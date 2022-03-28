@@ -1,17 +1,17 @@
-package com.warpit.springdemo5.repository;
+package com.warpit.springdemo5.repository.onetomany;
 
-import static java.util.Arrays.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.warpit.springdemo5.domain.Customer;
-import com.warpit.springdemo5.domain.Item;
+import com.warpit.springdemo5.domain.onetomany.case1.Customer;
+import com.warpit.springdemo5.domain.onetomany.case1.Item;
+
+
 
 
 @DataJpaTest
@@ -19,7 +19,9 @@ import com.warpit.springdemo5.domain.Item;
 class CustomerRepositoryTest {
 	
 	
-	@Autowired CustomerRepository customerRepository;
+	@Autowired CustomerRepositoryOneToMany customerRepository;
+	
+	
 	
     @BeforeEach
     void setUp() {
@@ -36,8 +38,10 @@ class CustomerRepositoryTest {
 	@Test
 	void findCustomerById() {
 		Customer customer = new Customer("Customer1");
-    	Item item = new Item("Item1");
-     	customer.setItem(item);
+    	Item item1 = new Item("Item1");
+    	Item item2 = new Item("Item2");
+     	customer.getItems().add(item1);
+     	customer.getItems().add(item2);
      	customerRepository.save(customer);
 		assertThat(customerRepository.findById(customer.getId())).hasValue(customer);
 	}

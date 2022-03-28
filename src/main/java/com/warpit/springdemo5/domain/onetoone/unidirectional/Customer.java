@@ -1,4 +1,4 @@
-package com.warpit.springdemo5.domain;
+package com.warpit.springdemo5.domain.onetoone.unidirectional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

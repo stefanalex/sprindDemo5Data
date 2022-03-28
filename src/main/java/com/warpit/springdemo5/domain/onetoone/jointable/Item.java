@@ -1,12 +1,14 @@
-package com.warpit.springdemo5.domain;
+package com.warpit.springdemo5.domain.onetoone.jointable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table
+@Entity(name="Item3")
+@Table(name="Item3")
 public class Item {
 	
 	@Id
@@ -15,7 +17,7 @@ public class Item {
 	
 	private String name;
 	
-
+	
 	public Item(String name) {
 		super();
 		this.name = name;
